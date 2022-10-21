@@ -11,7 +11,8 @@ const VehicleZodSchema = z.object({
     invalid_type_error: 'Year must be a number',
   }).gte(1900, { message: 'Year must be more than 1900 or equal' })
     .lte(2022, { message: 'Year must be less than 2022 or equal' })
-    .int({ message: 'Year must be an integer' }),
+    .int({ message: 'Year must be an integer' })
+    .positive(),
 
   color: z.string({
     required_error: 'Color is required',
@@ -22,7 +23,9 @@ const VehicleZodSchema = z.object({
   buyValue: z.number({
     required_error: 'Buy value is required',
     invalid_type_error: 'Buy value must be a number',
-  }).int({ message: 'Buy value must be an integer' }),
+  })
+    .int({ message: 'Buy value must be an integer' })
+    .positive(),
 });
 
 type IVehicle = z.infer<typeof VehicleZodSchema>;
