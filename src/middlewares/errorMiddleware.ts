@@ -1,5 +1,6 @@
 import { ErrorRequestHandler } from 'express';
 import { ZodError } from 'zod';
+import 'express-async-errors';
 import { ErrorTypes, errorCatalog } from '../errors/catalog';
 
 const errorHandler: ErrorRequestHandler = (

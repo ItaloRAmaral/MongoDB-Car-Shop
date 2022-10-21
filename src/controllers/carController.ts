@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import { IService } from '../interfaces/IService';
 import { ICar } from '../interfaces/ICar';
 
@@ -8,18 +8,24 @@ export default class CarController {
   public async create(
     req: Request,
     res: Response<ICar>,
+    next: NextFunction,
   ) {
-    const { model, year, color, buyValue, doorsQty, seatsQty } = req.body;
-    const car = { model, year, color, buyValue, doorsQty, seatsQty };
-
-    const results = await this._service.create(car);
-
-    return res.status(201).json(results);
+    try {
+      // const { model, year, color, buyValue, doorsQty, seatsQty } = req.body;
+      // const car = { model, year, color, buyValue, doorsQty, seatsQty };
+      // console.log('createControler', car);
+      const results = await this._service.create(req.body);
+  
+      return res.status(201).json(results);
+    } catch (error) {
+      next(error); 
+    }
   }
 
   public async readOne(
     req: Request,
     res: Response<ICar>,
+    _next: NextFunction,
   ) {
     const result = await this._service.readOne(req.params.id);
 
@@ -29,6 +35,7 @@ export default class CarController {
   public async read(
     req: Request,
     res: Response<ICar[]>,
+    _next: NextFunction,
   ) {
     const result = await this._service.read();
 
@@ -38,6 +45,7 @@ export default class CarController {
   public async update(
     req: Request,
     res: Response<ICar>,
+    _next: NextFunction,
   ) {
     const { model, year, color, buyValue, doorsQty, seatsQty } = req.body;
     const car = { model, year, color, buyValue, doorsQty, seatsQty };
@@ -50,6 +58,7 @@ export default class CarController {
   public async delete(
     req: Request,
     res: Response<ICar>,
+    _next: NextFunction,
   ) {
     const result = await this._service.delete(req.params.id);
 

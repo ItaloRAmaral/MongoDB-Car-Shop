@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Request, Response, NextFunction, Router } from 'express';
 import CarController from '../controllers/carController';
 import CarService from '../services/CarService';
 import CarModel from '../models/CarModel';
@@ -9,10 +9,11 @@ const carModel = new CarModel();
 const carService = new CarService(carModel);
 const carController = new CarController(carService);
 
-carRouter.post('/cars', (req, res) => carController.create(req, res));
-carRouter.get('/cars/:id', (req, res) => carController.readOne(req, res));
-carRouter.get('/cars', (req, res) => carController.read(req, res));
-carRouter.put('/cars/:id', (req, res) => carController.update(req, res));
-carRouter.delete('/cars/:id', (req, res) => carController.delete(req, res));
+carRouter.post('/cars', (req: Request, res: Response, next: NextFunction) => 
+  carController.create(req, res, next));
+carRouter.get('/cars/:id', (req, res, next) => carController.readOne(req, res, next));
+carRouter.get('/cars', (req, res, next) => carController.read(req, res, next));
+carRouter.put('/cars/:id', (req, res, next) => carController.update(req, res, next));
+carRouter.delete('/cars/:id', (req, res, next) => carController.delete(req, res, next));
 
 export default carRouter;

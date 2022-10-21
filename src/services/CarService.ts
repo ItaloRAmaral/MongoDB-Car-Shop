@@ -1,4 +1,3 @@
-import CarModel from '../models/CarModel';
 import { IService } from '../interfaces/IService';
 import { ICar, CarZodSchema } from '../interfaces/ICar';
 import { IModel } from '../interfaces/IModel';
@@ -7,7 +6,7 @@ import { ErrorTypes } from '../errors/catalog';
 class CarService implements IService<ICar> {
   private _carService: IModel<ICar>;
   
-  constructor(model: IModel<ICar> = new CarModel()) {
+  constructor(model: IModel<ICar>) {
     this._carService = model;
   }
 
