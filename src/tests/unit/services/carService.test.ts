@@ -98,4 +98,43 @@ describe('Car Service', () => {
       expect(error.message).to.be.eq(ErrorTypes.EntityNotFound);
     });
   });
+
+  describe('Update a Car', () => {
+    it('successfully updated', async () => {
+      sinon.stub(carModel, "update").resolves(carMockWithId);
+
+      const carUpdated = await carService.update(carMockWithId._id, carMock);
+
+      expect(carUpdated).to.be.deep.equal(carMockWithId);
+
+      sinon.restore();
+    });
+
+    it('failure - zod', async () => {
+      let error;
+
+      try {
+        await carService.update("any-id", { INVALID: "OBJECT" });
+      } catch (err: any) {
+        error = err;
+      }
+
+      expect(error).to.be.instanceOf(ZodError);
+    });
+
+    it("Failure - Car not Found", async () => {
+      sinon.stub(carModel, "update").resolves(null);
+      let error: any;
+
+      try {
+        await carService.update("any-id", carMock);
+      } catch (err) {
+        error = err;
+      }
+
+      expect(error?.message).to.be.eq(ErrorTypes.EntityNotFound);
+
+      sinon.restore();
+    });
+  });
 });
