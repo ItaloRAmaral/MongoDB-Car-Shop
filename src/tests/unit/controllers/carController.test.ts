@@ -20,6 +20,7 @@ describe ('Car Controller', () => {
     sinon.stub(carService, 'readOne').resolves(carMock);
     sinon.stub(carService, 'read').resolves([carMockWithId]);
     sinon.stub(carService, 'delete').resolves(carMockWithId);
+    sinon.stub(carService, 'update').resolves(carMockWithId);
 
     res.status = sinon.stub().returns(res);
     res.json = sinon.stub().returns(res);
@@ -65,6 +66,70 @@ describe ('Car Controller', () => {
 
       expect((res.status as sinon.SinonStub).calledWith(200)).to.be.true;
       expect((res.json as sinon.SinonStub).calledWith(carMockWithId)).to.be.true;
+    });
+  });
+
+  describe("Update Car", () => {
+    it("Success", async () => {
+      await carController.update(req, res, next);
+
+      expect((res.status as sinon.SinonStub).calledWith(200)).to.be.true;
+      expect((res.json as sinon.SinonStub).calledWith(carMockWithId)).to.be
+        .true;
+    });
+  });
+
+
+
+  describe('Error Handling', () => {
+    it('Create Error handling', async () => {
+      const error = new Error('Error');
+      (carService.create as sinon.SinonStub).throws(error);
+
+      const next = sinon.spy();
+      await carController.create(req, res, next);
+
+      sinon.assert.calledOnce(next);
+    });
+
+    it('ReadOne Error handling', async () => {
+      const error = new Error('Error');
+      (carService.readOne as sinon.SinonStub).throws(error);
+
+      const next = sinon.spy();
+      await carController.readOne(req, res, next);
+
+      sinon.assert.calledOnce(next);
+    });
+
+    it('Read Error handling', async () => {
+      const error = new Error('Error');
+      (carService.read as sinon.SinonStub).throws(error);
+
+      const next = sinon.spy();
+      await carController.read(req, res, next);
+
+      sinon.assert.calledOnce(next);
+    });
+
+    it('Delete Error handling', async () => {
+      const error = new Error('Error');
+      (carService.delete as sinon.SinonStub).throws(error);
+
+      const next = sinon.spy();
+      await carController.delete(req, res, next);
+
+      sinon.assert.calledOnce(next);
+    });
+
+    it('Update Error handling', async () => {
+      const error = new Error('Error');
+      (carService.update as sinon.SinonStub).throws(error);
+
+      const next = sinon.spy();
+      await carController.update(req, res, next);
+
+      sinon.assert.calledOnce(next);
     });
   });
 });
