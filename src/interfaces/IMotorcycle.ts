@@ -7,7 +7,7 @@ const MotorcycleZodSchema = VehicleZodSchema.extend({
   engineCapacity: z.number({
     required_error: 'Engine capacity is required',
     invalid_type_error: 'Engine capacity must be a number',
-  }).lte(2, { message: 'Engine capacity must be less than 2 or equal' })
+  }).lte(2500, { message: 'Engine capacity must be lesser than 2500 or equal' })
     .int({ message: 'Engine capacity must be an integer' })
     .positive({ message: 'Engine capacity must be positive' }),
 });

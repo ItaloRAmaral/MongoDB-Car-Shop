@@ -69,7 +69,7 @@ export default class MotorcycleController {
     try {
       const result = await this._service.delete(req.params.id);
   
-      return res.status(200).json(result);
+      return res.status(204).json(result);
     } catch (error) {
       next(error);
     }
