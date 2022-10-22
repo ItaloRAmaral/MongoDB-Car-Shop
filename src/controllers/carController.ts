@@ -25,43 +25,59 @@ export default class CarController {
   public async readOne(
     req: Request,
     res: Response<ICar>,
-    _next: NextFunction,
+    next: NextFunction,
   ) {
-    const result = await this._service.readOne(req.params.id);
-
-    return res.status(200).json(result);
+    try {
+      const result = await this._service.readOne(req.params.id);
+  
+      return res.status(200).json(result);
+    } catch (error) {
+      next(error);
+    }
   }
 
   public async read(
-    req: Request,
+    _req: Request,
     res: Response<ICar[]>,
-    _next: NextFunction,
+    next: NextFunction,
   ) {
-    const result = await this._service.read();
-
-    return res.status(200).json(result);
+    try {
+      const result = await this._service.read();
+  
+      return res.status(200).json(result);
+    } catch (error) {
+      next(error);
+    }
   }
 
   public async update(
     req: Request,
     res: Response<ICar>,
-    _next: NextFunction,
+    next: NextFunction,
   ) {
-    const { model, year, color, buyValue, doorsQty, seatsQty } = req.body;
-    const car = { model, year, color, buyValue, doorsQty, seatsQty };
-
-    const result = await this._service.update(req.params.id, car);
-
-    return res.status(200).json(result);
+    try {
+      const { model, year, color, buyValue, doorsQty, seatsQty } = req.body;
+      const car = { model, year, color, buyValue, doorsQty, seatsQty };
+  
+      const result = await this._service.update(req.params.id, car);
+  
+      return res.status(200).json(result); 
+    } catch (error) {
+      next(error);
+    }
   }
 
   public async delete(
     req: Request,
     res: Response<ICar>,
-    _next: NextFunction,
+    next: NextFunction,
   ) {
-    const result = await this._service.delete(req.params.id);
-
-    return res.status(200).json(result);
+    try {
+      const result = await this._service.delete(req.params.id);
+      
+      return res.status(204).json(result);
+    } catch (error) {
+      next(error);
+    }
   }
 }
