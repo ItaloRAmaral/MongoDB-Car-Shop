@@ -50,7 +50,7 @@ npm install
 ```
 docker-compose up -d
 ```
-4. Para rodar o servidor com o docker, basta acessar o terminal do container car_shop e rodar o comando abaixo e utilizar o insomnia, postman ou algum software seu de preferencia
+4. Para rodar o servidor com o docker, basta acessar o terminal do container car_shop e rodar o comando abaixo e utilizar o insomnia, postman ou algum software de sua preferencia
 
 ```
 npm run dev
