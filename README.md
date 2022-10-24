@@ -321,7 +321,7 @@ npm run test:coverage
 
 | Método | Funcionalidade | URL |
 |---|---|---|
-| `PUT` | Atualizar um carro atravéz do id | http://localhost:3001/motorcycles/:id
+| `PUT` | Atualizar uma moto atravéz do id | http://localhost:3001/motorcycles/:id
 
 <details>
   <summary> A resposta da requisição é a seguinte com status 200  </summary>
@@ -351,7 +351,7 @@ npm run test:coverage
 
 | Método | Funcionalidade | URL |
 |---|---|---|
-| `DELETE` | Deletar um carro atravéz do id | http://localhost:3001/motorcycles/:id
+| `DELETE` | Deletar uma moto atravéz do id | http://localhost:3001/motorcycles/:id
 
 * A resposta da requisição é 204 e sem body em caso de sucesso
 
