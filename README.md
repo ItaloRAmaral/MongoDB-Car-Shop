@@ -5,7 +5,7 @@
 
 O projeto consolida muito do que foi aprendido desde o início do módulo de Back End, como utilização de Docker, arquiteturação do código seguindo o modelo MSC e criação de APIs RESTful com CRUD completo. No caso deste projeto, nos aprofundamos ainda mais na utilização de SOLID para boa escrita e manutenabilidade do código, bem como utilização de POO e TypeScript para conferir mais robustez ao projeto. Como desafios, tivemos que criar uma API CRUD de uma concessionária, em que é possível ler, criar, editar e deletar veículos (carros e motos) do banco de dados da concessionária. Este projeto utiliza o banco de dados não relacional MongoDB, e para manipulá-lo fizemos uso da ODM Mongoose.
 
-Também foram desenvolvidos testes com cobertura de 100% do projeto, utilizando as ferramentas Mocha, Chai e Sinon. Para executar os testes do projeto, é necessário rodar o comando
+Também foram desenvolvidos testes com cobertura de 100% do projeto, utilizando as ferramentas Mocha, Chai e Sinon.
 
 ## :man_technologist: Habilidades desenvolvidas
 
